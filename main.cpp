@@ -40,13 +40,15 @@ vector<string> tokenize_ip(const string& ip){
 int main(){
 
     string ip_command;
+    string filename = "history.txt";
 
+    load_history_from_file(filename);
     while(true){
 
         displayPrompt();
 
-        getline(cin,ip_command);
-        string filename = "history.txt";
+        // getline(cin,ip_command);
+        ip_command = get_autocomplete_input();
         
         vector<string> tokens = tokenize_ip(ip_command);
 
@@ -108,9 +110,17 @@ int main(){
                 else if(tokens.size() == 1) call_history();
                 else cout<<"bash: history: too many arguments"<<'\n';
             }
-            else{
-                cout<<tokens[0]<<": command not found"<<'\n';
+            else {
+                // Handle background command
+                bool is_background = false;
+                if (tokens.back() == "&") {
+                    is_background = true;
+                    tokens.pop_back(); // Remove '&'
+                }
+
+                execute_system_command(tokens, is_background);
             }
+
         }
     }
 
