@@ -19,7 +19,7 @@ Command History: Tracks up to 20 commands across sessions, with history and arro
 
 Restrictions:
 No system(), popen(), or curses/ncurses.
-Implements custom parsing, redirection, and piping without using advanced libraries like <filesystem>.
+Implements custom parsing, redirection, and piping without using advanced libraries like < filesystem >.
 
 Structure
 Includes a Makefile for compilation 
