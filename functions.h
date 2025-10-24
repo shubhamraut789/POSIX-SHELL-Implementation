@@ -1,5 +1,5 @@
 #include <vector>
-#include <string>
+#include <string.h>
 using namespace std;
 
 void displayPrompt();
@@ -19,7 +19,7 @@ void call_echo(string& str);
 void call_pwd();
 
 void call_search(string& searchString);
-
+void load_history_from_file(const string& filename);
 void add_to_history(const string& command, const string& filename);
 
 void call_history();
@@ -30,3 +30,7 @@ void handle_redirection(vector<string>& tokens);
 void call_pipes(const vector<string>& commands);
 
 void call_pinfo(int num_of_args, vector<string> args);
+
+void execute_system_command(vector<string> tokens, bool background);
+
+string get_autocomplete_input();
